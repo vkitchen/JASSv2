@@ -32,6 +32,9 @@ namespace JASS
 		if (results_list.size() == 0)
 			return 0;
 
+		if (query_id == "72")
+			std::cout << "no. relevant " << number_of_relevant_assessments << std::endl;
+
 		for (const auto &result : results_list)
 			{
 			which++;
@@ -42,11 +45,16 @@ namespace JASS
 				{
 				found_and_relevant++;
 				cumulative += found_and_relevant / which;
+				if (query_id == "72")
+					std::cout << found_and_relevant << ' ' << which << std::endl;
 				}
 
 			if (which >= depth)
 				break;
 			}
+
+		if (query_id == "72")
+			std::cout << "Result: " << (cumulative / number_of_relevant_assessments) << std::endl;
 
 		return cumulative / number_of_relevant_assessments;
 		}
