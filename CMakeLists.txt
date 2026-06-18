@@ -99,7 +99,7 @@ endif()
 #
 #	Compatibility with the FileSystem libraries for g++ prior to verison 9
 #
-if(UNIX AND NOT APPLE)
+if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
 	message("Adding stdc++fs library for early g++ compatibility")
 	link_libraries(stdc++fs)
 endif()
