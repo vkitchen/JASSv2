@@ -16,7 +16,7 @@ include(${CMAKE_ROOT}/Modules/ExternalProject.cmake)
 #
 # Versions of externals to download
 #
-set(ZLIB_VERSION "1.3")
+set(ZLIB_VERSION "1.3.2")
 set(ZSTD_VERSION "1.5.7")
 
 
