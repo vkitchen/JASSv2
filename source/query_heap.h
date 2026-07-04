@@ -220,7 +220,7 @@ namespace JASS
 					if the old value didn't exceed the heap entry, or it was equal and we failed the tie-break then we weren't in it
 					otherwise we were and need to be promoted
 				*/
-				if (*which.pointer() - score < top_k_lower_bound || (*which.pointer() - score == top_k_lower_bound && which.pointer() < accumulator_pointers[0].pointer()))
+				if (*which.pointer() - score < top_k_lower_bound || (*which.pointer() - score == top_k_lower_bound && which.pointer() <= accumulator_pointers[0].pointer()))
 					top_results.push_back(which);
 				else
 					{
