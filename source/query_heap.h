@@ -222,8 +222,10 @@ namespace JASS
 					otherwise we were in the middle somewhere and need to be promoted
 				*/
 				if (*which.pointer() - score < top_k_lower_bound || (*which.pointer() - score == top_k_lower_bound && which.pointer() <= accumulator_pointers[0].pointer()))
+					{
 					top_results.push_back(which);
 					top_k_lower_bound = *accumulator_pointers[0]; /* set the new bottom of heap value */
+					}
 				else
 					{
 					auto at = top_results.find(which); /* we're already in there so find us and reshuffle the heap. */
