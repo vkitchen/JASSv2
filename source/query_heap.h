@@ -218,16 +218,17 @@ namespace JASS
 				/*
 					accumulator exceeds the heap entry value, we now need to figure out if the accumulator was already in the heap
 					if the old value didn't exceed the heap entry, or it was equal and we failed the tie-break then we weren't in it
-					otherwise we were and need to be promoted
+					if we were in it and are the lower bound value we reinsert to avoid the expensive find call
+					otherwise we were in the middle somewhere and need to be promoted
 				*/
-				if (*which.pointer() - score < top_k_lower_bound || (*which.pointer() - score == top_k_lower_bound && which.pointer() < accumulator_pointers[0].pointer()))
+				if (*which.pointer() - score < top_k_lower_bound || (*which.pointer() - score == top_k_lower_bound && which.pointer() <= accumulator_pointers[0].pointer()))
 					top_results.push_back(which);
+					top_k_lower_bound = *accumulator_pointers[0]; /* set the new bottom of heap value */
 				else
 					{
 					auto at = top_results.find(which); /* we're already in there so find us and reshuffle the heap. */
 					top_results.promote(which, at); /* we're already in the heap so promote this document */
 					}
-				top_k_lower_bound = *accumulator_pointers[0]; /* set the new bottom of heap value */
 				}
 
 			/*
